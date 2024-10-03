@@ -1,0 +1,54 @@
+# Encoding and Decoding scheme
+
+-- Encoding scheme 
+	-- Every byte sequence is prepended by 01 and appended by 01
+	-- 01 represents that further 1 byte is readable
+	-- 00 represents end of the encoded sequence
+
+-- Decoding Scheme
+	-- First two bits are read if it is 01 then decoder moves forward
+	-- if it is 00 the decoder stops
+
+
+
+# Encoder and Decoder return types
+
+-- struct result{
+		unsigned char *decoded_array;
+		int no_of_bytes_read;
+	}
+
+-- struct result Decoder(unsigned char*);
+-- struct result Encoder(char*,int);
+
+
+
+# Storage Scheme on disk
+
+-- Metadata is written from left end of the disk
+	--Metadata consists of 3 things
+		1.filename
+		2.file start(on disk)
+		3.file size
+
+-- Documents are written from right end of disk
+
+
+
+# vdAdd,vdGet,vdls,vdCreate
+
+-- vdCreate <diskName> <size>
+	-- Creates a virtual disk of name <diskName> and size <size>
+
+-- vdAdd <filename> <size> <diskName>
+	-- Adds a file of name <filename> of size <size> on disk <diskName>
+
+-- vdls <diskName>
+	-- lists all files on the disk <diskName>
+
+-- vdGet <filename> <diskName>
+	-- returns a file <filename> present on disk <diskName>
+-- vdDelete <filename> <diskName>
+	-- deletes a file <filename> present on disk which is recoverable
+
+**Currently working on defragmentation**
